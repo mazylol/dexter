@@ -2,7 +2,8 @@ package com.mazylol.dexter.commands;
 
 import com.github.oscar0812.pokeapi.models.pokemon.Pokemon;
 import com.github.oscar0812.pokeapi.utils.Client;
-import com.mazylol.dexter.Tools;
+import com.mazylol.dexter.Tools.Stats;
+import com.mazylol.dexter.Tools.Text;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -21,14 +22,14 @@ public class PokemonCommand extends ListenerAdapter {
                 Pokemon pokemon = Client.getPokemonByName(Objects.requireNonNull(event.getOption("name")).getAsString());
 
                 eb.setColor(new Color(240, 62, 51));
-                eb.setTitle(Tools.capitalize(pokemon.getName()) + " (#" + pokemon.getId() + ")");
+                eb.setTitle(Text.capitalize(pokemon.getName()) + " (#" + pokemon.getId() + ")");
                 eb.addField("Height", pokemon.getHeight() + " (dm)", true);
                 eb.addField("Weight", pokemon.getWeight() + " (hg)", true);
-                eb.addField("HP",  Tools.getStat(pokemon, 0), true);
-                eb.addField("Attack", Tools.getStat(pokemon, 1), true);
-                eb.addField("Defense", Tools.getStat(pokemon, 2), true);
-                eb.addField("Special Attack", Tools.getStat(pokemon, 3), true);
-                eb.addField("Speed", Tools.getStat(pokemon, 4), true);
+                eb.addField("HP",  Stats.getStat(pokemon, 0), true);
+                eb.addField("Attack", Stats.getStat(pokemon, 1), true);
+                eb.addField("Defense", Stats.getStat(pokemon, 2), true);
+                eb.addField("Special Attack", Stats.getStat(pokemon, 3), true);
+                eb.addField("Speed", Stats.getStat(pokemon, 4), true);
                 eb.setThumbnail(pokemon.getSprites().getFrontDefault());
                 eb.setTimestamp(Instant.now());
 
