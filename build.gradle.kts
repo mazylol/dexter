@@ -22,6 +22,7 @@ dependencies {
     implementation("com.github.oscar0812:pokeapi:2.0.0")
     implementation("io.github.cdimascio:dotenv-java:2.3.1")
     implementation("ch.qos.logback:logback-classic:1.4.5")
+    implementation("com.google.code.gson:gson:2.10")
 
 }
 
