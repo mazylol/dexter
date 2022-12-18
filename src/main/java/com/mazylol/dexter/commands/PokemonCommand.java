@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
+import java.awt.Color;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -25,16 +25,16 @@ public class PokemonCommand extends ListenerAdapter {
                 eb.setTitle(Text.capitalize(pokemon.getName()) + " (#" + pokemon.getId() + ")");
                 eb.addField("Height", pokemon.getHeight() + " (dm)", true);
                 eb.addField("Weight", pokemon.getWeight() + " (hg)", true);
-                eb.addField("HP",  Stats.getStat(pokemon, 0), true);
-                eb.addField("Attack", Stats.getStat(pokemon, 1), true);
-                eb.addField("Defense", Stats.getStat(pokemon, 2), true);
-                eb.addField("Special Attack", Stats.getStat(pokemon, 3), true);
-                eb.addField("Speed", Stats.getStat(pokemon, 4), true);
+                eb.addField("HP",  Stats.getStat(pokemon, "hp"), true);
+                eb.addField("Attack", Stats.getStat(pokemon, "attack"), true);
+                eb.addField("Defense", Stats.getStat(pokemon, "defense"), true);
+                eb.addField("Special Attack", Stats.getStat(pokemon, "special-attack"), true);
+                eb.addField("Speed", Stats.getStat(pokemon, "special-defense"), true);
                 eb.setThumbnail(pokemon.getSprites().getFrontDefault());
                 eb.setTimestamp(Instant.now());
 
                 event.replyEmbeds(eb.build()).queue();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 eb.setColor(Color.RED);
                 eb.setTitle("Error!");
                 eb.setDescription("That Pokemon does not exist!");
