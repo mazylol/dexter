@@ -6,21 +6,33 @@ import com.google.gson.JsonParser;
 import org.jetbrains.annotations.NotNull;
 
 public class Stats {
-    public static String getStat(@NotNull Pokemon pokemon, String type) {
-        int index = switch (type) {
-            case "hp" -> 0;
-            case "attack" -> 1;
-            case "defense" -> 2;
-            case "special-attack" -> 3;
-            case "special-defense" -> 4;
-            case "speed" -> 5;
+    public static String getHp(@NotNull Pokemon pokemon) {
+        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(0))).getAsJsonObject();
+        return stats.get("base_stat").getAsString();
+    }
 
-            default -> 69;
-        };
+    public static String getAttack(@NotNull Pokemon pokemon) {
+        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(1))).getAsJsonObject();
+        return stats.get("base_stat").getAsString();
+    }
 
-        if (index == 69) System.out.println("Not a valid stat : Stats.java");
+    public static String getDefense(@NotNull Pokemon pokemon) {
+        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(2))).getAsJsonObject();
+        return stats.get("base_stat").getAsString();
+    }
 
-        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(index))).getAsJsonObject();
+    public static String getSpecialAttack(@NotNull Pokemon pokemon) {
+        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(3))).getAsJsonObject();
+        return stats.get("base_stat").getAsString();
+    }
+
+    public static String getSpecialDefense(@NotNull Pokemon pokemon) {
+        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(4))).getAsJsonObject();
+        return stats.get("base_stat").getAsString();
+    }
+
+    public static String getSpeed(@NotNull Pokemon pokemon) {
+        JsonObject stats = JsonParser.parseString(String.valueOf(pokemon.getStats().get(5))).getAsJsonObject();
         return stats.get("base_stat").getAsString();
     }
 }

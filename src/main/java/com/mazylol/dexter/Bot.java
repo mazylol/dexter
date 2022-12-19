@@ -1,6 +1,6 @@
 package com.mazylol.dexter;
 
-import com.mazylol.dexter.commands.PokemonCommand;
+import com.mazylol.dexter.commands.PokemonCommand.PokemonBase;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -16,16 +16,17 @@ public class Bot {
 
         JDA jda = JDABuilder.createDefault(dotenv.get("DEVTOKEN"))
                 .setActivity(Activity.competing("to become the very best"))
-                .addEventListeners(new PokemonCommand())
+                .addEventListeners(new PokemonBase())
                 .build().awaitReady();
 
         Guild guild = jda.getGuildById(dotenv.get("GUILD"));
 
         assert guild != null;
+
         guild.updateCommands().addCommands(
                 Commands.slash("pokemon", "general info on a pokemon")
                         .addOptions(
-                                new OptionData(OptionType.STRING, "name", "name of the pokemon").setRequired(true)
+                                new OptionData(OptionType.STRING, "name", "name of the pokemon", true)
                         )
         ).queue();
     }
