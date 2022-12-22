@@ -26,6 +26,11 @@ public class Bot {
         guild.updateCommands().addCommands(
                 Commands.slash("pokemon", "general info on a pokemon")
                         .addOptions(
+                                new OptionData(OptionType.STRING, "categories", "information to respond with", true)
+                                        .addChoice("Stats", "stats")
+                                        .addChoice("Evolution", "evolution")
+                                        .addChoice("Moves", "moves")
+                                        .addChoice("Abilities", "abilities"),
                                 new OptionData(OptionType.STRING, "name", "name of the pokemon", true)
                         )
         ).queue();
