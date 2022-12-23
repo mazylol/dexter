@@ -24,14 +24,14 @@ public class Bot {
         assert guild != null;
 
         guild.updateCommands().addCommands(
-                Commands.slash("pokemon", "general info on a pokemon")
+                Commands.slash("pokemon", "Everything you want to know about a Pokemon")
                         .addOptions(
-                                new OptionData(OptionType.STRING, "categories", "information to respond with", true)
-                                        .addChoice("Stats", "stats")
+                                new OptionData(OptionType.STRING, "name", "Name of the Pokemon", true),
+                                new OptionData(OptionType.STRING, "categories", "Type of information to respond with", true)
+                                        .addChoice("Abilities", "abilities")
                                         .addChoice("Evolution", "evolution")
                                         .addChoice("Moves", "moves")
-                                        .addChoice("Abilities", "abilities"),
-                                new OptionData(OptionType.STRING, "name", "name of the pokemon", true)
+                                        .addChoice("Stats", "stats")
                         )
         ).queue();
     }
